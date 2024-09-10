@@ -640,11 +640,11 @@ if ($conn->connect_error) {
                                     <div class="col-sm-12 col-lg-3">
                                         <span class="field-box d-block w-100 position-relative">
                                             <select class="email" name="sector">
-                                                <!-- Default option -->
+                                                <!-- Default option for sectors -->
                                                 <option class="sf-level-0 sf-item-0 sf-option-active" selected="selected" data-sf-count="0" data-sf-depth="0" value="">All Sectors</option>
 
                                                 <?php
-                                                // Query to select all projects
+                                                // Query to select distinct sector types
                                                 $sql = "SELECT DISTINCT sector_type FROM projects"; // Using DISTINCT to avoid duplicate sectors
                                                 $result = $conn->query($sql);
 
@@ -658,272 +658,38 @@ if ($conn->connect_error) {
                                                 } else {
                                                     echo '<option value="">No sectors available</option>';
                                                 }
+                                                ?>
+                                            </select>
+                                        </span>
+                                    </div>
+
+                                    <div class="col-sm-12 col-lg-3">
+                                        <span class="field-box d-block w-100 position-relative">
+                                            <select class="phone" name="location">
+                                                <!-- Default option for locations -->
+                                                <option class="sf-level-0 sf-item-0 sf-option-active" selected="selected" data-sf-depth="0" value="">All Locations</option>
+
+                                                <?php
+                                                // Query to select distinct location types
+                                                $sql = "SELECT DISTINCT location_type FROM projects"; // Using DISTINCT to avoid duplicate locations
+                                                $result = $conn->query($sql);
+
+                                                // Check if there are results
+                                                if ($result->num_rows > 0) {
+                                                    // Output data for each row
+                                                    while ($row = $result->fetch_assoc()) {
+                                                        // Echo the location types as option elements
+                                                        echo '<option class="sf-level-0" data-sf-count="1" data-sf-depth="0" value="' . htmlspecialchars($row["location_type"]) . '">' . htmlspecialchars($row["location_type"]) . '</option>';
+                                                    }
+                                                } else {
+                                                    echo '<option value="">No locations available</option>';
+                                                }
 
                                                 // Close the connection
                                                 $conn->close();
                                                 ?>
                                             </select>
                                         </span>
-
-
-                                    </div>
-                                    <div class="col-sm-12 col-lg-3">
-
-                                        <span class="field-box d-block w-100 position-relative"><select class="phone" type="text" name="location">
-
-
-                                                <option class="sf-level-0 sf-item-0 sf-option-active" selected="selected" data-sf-depth="0" value="">All Locations</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Afghanistan">Afghanistan</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Åland Islands">Åland Islands</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Albania">Albania</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Algeria">Algeria</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="American Samoa">American Samoa</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Andorra">Andorra</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Angola">Angola</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Anguilla">Anguilla</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Antarctica">Antarctica</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Antigua and Barbuda">Antigua and Barbuda</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Argentina">Argentina</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Armenia">Armenia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Aruba">Aruba</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Australia">Australia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Austria">Austria</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Azerbaijan">Azerbaijan</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Bahamas">Bahamas</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Bahrain">Bahrain</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Bangladesh">Bangladesh</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Barbados">Barbados</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Belarus">Belarus</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Belgium">Belgium</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Belize">Belize</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Benin">Benin</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Bermuda">Bermuda</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Bhutan">Bhutan</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Bolivia, Plurinational State of">Bolivia, Plurinational State of</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Bonaire, Sint Eustatius and Saba">Bonaire, Sint Eustatius and Saba</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Botswana">Botswana</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Bouvet Island">Bouvet Island</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Brazil">Brazil</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="British Indian Ocean Territory">British Indian Ocean Territory</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Brunei Darussalam">Brunei Darussalam</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Bulgaria">Bulgaria</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Burkina Faso">Burkina Faso</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Burundi">Burundi</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Cambodia">Cambodia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Cameroon">Cameroon</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Canada">Canada</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Cape Verde">Cape Verde</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Cayman Islands">Cayman Islands</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Central African Republic">Central African Republic</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Chad">Chad</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Chile">Chile</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="China">China</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Christmas Island">Christmas Island</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Colombia">Colombia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Comoros">Comoros</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Congo">Congo</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Congo, the Democratic Republic of the">Congo, the Democratic Republic of the</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Cook Islands">Cook Islands</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Costa Rica">Costa Rica</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Côte d&#039;Ivoire">Côte d&#039;Ivoire</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Croatia">Croatia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Cuba">Cuba</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Curaçao">Curaçao</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Cyprus">Cyprus</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Czech Republic">Czech Republic</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Denmark">Denmark</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Djibouti">Djibouti</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Dominica">Dominica</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Dominican Republic">Dominican Republic</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Ecuador">Ecuador</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Egypt">Egypt</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="El Salvador">El Salvador</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Equatorial Guinea">Equatorial Guinea</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Eritrea">Eritrea</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Estonia">Estonia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Ethiopia">Ethiopia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Falkland Islands (Malvinas)">Falkland Islands (Malvinas)</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Faroe Islands">Faroe Islands</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Fiji">Fiji</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Finland">Finland</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="France">France</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="French Guiana">French Guiana</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="French Polynesia">French Polynesia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="French Southern Territories">French Southern Territories</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Gabon">Gabon</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Gambia">Gambia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Georgia">Georgia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Germany">Germany</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Ghana">Ghana</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Gibraltar">Gibraltar</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Greece">Greece</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Greenland">Greenland</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Grenada">Grenada</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Guadeloupe">Guadeloupe</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Guam">Guam</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Guatemala">Guatemala</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Guernsey">Guernsey</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Guinea">Guinea</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Guinea-Bissau">Guinea-Bissau</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Guyana">Guyana</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Haiti">Haiti</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Heard Island and McDonald Mcdonald Islands">Heard Island and McDonald Mcdonald Islands</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Holy See (Vatican City State)">Holy See (Vatican City State)</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Honduras">Honduras</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Hong Kong">Hong Kong</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Hungary">Hungary</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Iceland">Iceland</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="India">India</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Indonesia">Indonesia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Iran, Islamic Republic of">Iran, Islamic Republic of</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Iraq">Iraq</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Ireland">Ireland</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Isle of Man">Isle of Man</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Israel">Israel</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Italy">Italy</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Jamaica">Jamaica</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Japan">Japan</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Jersey">Jersey</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Jordan">Jordan</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Kazakhstan">Kazakhstan</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Kenya">Kenya</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Kiribati">Kiribati</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Korea, Democratic People&#039;s Republic of">Korea, Democratic People&#039;s Republic of</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Korea, Republic of">Korea, Republic of</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Kuwait">Kuwait</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Kyrgyzstan">Kyrgyzstan</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Lao People&#039;s Democratic Republic">Lao People&#039;s Democratic Republic</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Latvia">Latvia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Lebanon">Lebanon</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Lesotho">Lesotho</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Liberia">Liberia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Libya">Libya</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Liechtenstein">Liechtenstein</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Lithuania">Lithuania</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Luxembourg">Luxembourg</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Macao">Macao</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Macedonia, the Former Yugoslav Republic of">Macedonia, the Former Yugoslav Republic of</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Madagascar">Madagascar</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Malawi">Malawi</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Malaysia">Malaysia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Maldives">Maldives</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Mali">Mali</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Malta">Malta</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Marshall Islands">Marshall Islands</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Martinique">Martinique</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Mauritania">Mauritania</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Mauritius">Mauritius</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Mayotte">Mayotte</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Mexico">Mexico</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Micronesia, Federated States of">Micronesia, Federated States of</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Moldova">Moldova</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Monaco">Monaco</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Mongolia">Mongolia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Montenegro">Montenegro</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Montserrat">Montserrat</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Morocco">Morocco</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Mozambique">Mozambique</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Myanmar">Myanmar</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Namibia">Namibia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Nauru">Nauru</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Nepal">Nepal</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Netherlands">Netherlands</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="New Caledonia">New Caledonia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="New Zealand">New Zealand</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Nicaragua">Nicaragua</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Niger">Niger</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Nigeria">Nigeria</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Niue">Niue</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Norfolk Island">Norfolk Island</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Northern Mariana Islands">Northern Mariana Islands</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Norway">Norway</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Oman">Oman</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Pakistan">Pakistan</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Palau">Palau</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Palestine">Palestine</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Panama">Panama</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Papua New Guinea">Papua New Guinea</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Paraguay">Paraguay</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Peru">Peru</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Philippines">Philippines</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Pitcairn">Pitcairn</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Poland">Poland</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Portugal">Portugal</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Puerto Rico">Puerto Rico</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Qatar">Qatar</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Réunion">Réunion</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Romania">Romania</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Russian Federation">Russian Federation</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Rwanda">Rwanda</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Saint Barthélemy">Saint Barthélemy</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Saint Helena, Ascension and Tristan da Cunha">Saint Helena, Ascension and Tristan da Cunha</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Saint Lucia">Saint Lucia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Saint Martin (French part)">Saint Martin (French part)</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Saint Pierre and Miquelon">Saint Pierre and Miquelon</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Samoa">Samoa</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="San Marino">San Marino</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Sao Tome and Principe">Sao Tome and Principe</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Saudi Arabia">Saudi Arabia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Senegal">Senegal</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Serbia">Serbia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Seychelles">Seychelles</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Sierra Leone">Sierra Leone</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Singapore">Singapore</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Sint Maarten (Dutch part)">Sint Maarten (Dutch part)</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Slovakia">Slovakia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Slovenia">Slovenia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Solomon Islands">Solomon Islands</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Somalia">Somalia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="South Africa">South Africa</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="South Georgia and the South Sandwich Islands">South Georgia and the South Sandwich Islands</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="South Sudan">South Sudan</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Spain">Spain</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Sri Lanka">Sri Lanka</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Sudan">Sudan</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Suriname">Suriname</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Svalbard and Jan Mayen">Svalbard and Jan Mayen</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Swaziland">Swaziland</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Sweden">Sweden</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Switzerland">Switzerland</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Syrian Arab Republic">Syrian Arab Republic</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Taiwan">Taiwan</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Tajikistan">Tajikistan</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Tanzania, United Republic of">Tanzania, United Republic of</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Thailand">Thailand</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Timor-Leste">Timor-Leste</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Togo">Togo</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Tokelau">Tokelau</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Tonga">Tonga</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Trinidad and Tobago">Trinidad and Tobago</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Tunisia">Tunisia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Turkey">Turkey</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Turkmenistan">Turkmenistan</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Turks and Caicos Islands">Turks and Caicos Islands</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Tuvalu">Tuvalu</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Uganda">Uganda</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Ukraine">Ukraine</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="United Arab Emirates">United Arab Emirates</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="United Kingdom">United Kingdom</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="United States">United States</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="United States Minor Outlying Islands">United States Minor Outlying Islands</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Uruguay">Uruguay</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Uzbekistan">Uzbekistan</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Vanuatu">Vanuatu</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Venezuela, Bolivarian Republic of">Venezuela, Bolivarian Republic of</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Viet Nam">Viet Nam</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Virgin Islands, British">Virgin Islands, British</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Virgin Islands, U.S.">Virgin Islands, U.S.</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Wallis and Futuna">Wallis and Futuna</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Western Sahara">Western Sahara</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Yemen">Yemen</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Zambia">Zambia</option>
-                                                <option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value="Zimbabwe">Zimbabwe</option>
-
-                                            </select></span>
                                     </div>
                                     <div class="col-sm-12 col-lg-3">
                                         <span class="field-box d-block w-100 position-relative"><input class="phone" type="text" name="keyword" placeholder="Search projects or services" style="height: inherit;"></span>
