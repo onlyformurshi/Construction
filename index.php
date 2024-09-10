@@ -17,7 +17,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-exit();
+
 ?>
 
 
@@ -638,56 +638,34 @@ exit();
                                 <div class="row">
 
                                     <div class="col-sm-12 col-lg-3">
-                                        <span class="field-box d-block w-100 position-relative"><select class="email" name="sector">
+                                        <span class="field-box d-block w-100 position-relative">
+                                            <select class="email" name="sector">
+                                                <!-- Default option -->
+                                                <option class="sf-level-0 sf-item-0 sf-option-active" selected="selected" data-sf-count="0" data-sf-depth="0" value="">All Sectors</option>
 
                                                 <?php
                                                 // Query to select all projects
-                                                $sql = "SELECT * FROM projects";
+                                                $sql = "SELECT DISTINCT sector_type FROM projects"; // Using DISTINCT to avoid duplicate sectors
                                                 $result = $conn->query($sql);
 
                                                 // Check if there are results
                                                 if ($result->num_rows > 0) {
                                                     // Output data for each row
                                                     while ($row = $result->fetch_assoc()) {
-                                                        <option class="sf-level-0 sf-item-0 sf-option-active" selected="selected" data-sf-count="0" data-sf-depth="0" value="">All Sectors</option>
-
-                                                        echo "Sector Type: " . (isset($row["sector_type"]) ? $row["sector_type"] : 'N/A') . "<br>";
-                                                        echo<option class="sf-level-0 " data-sf-count="1" data-sf-depth="0" value=isset($row["id"]) >(isset($row["sector_type"]) </option>
-                                                        
+                                                        // Echo the sector types as option elements
+                                                        echo '<option class="sf-level-0" data-sf-count="1" data-sf-depth="0" value="' . htmlspecialchars($row["sector_type"]) . '">' . htmlspecialchars($row["sector_type"]) . '</option>';
                                                     }
                                                 } else {
-                                                    echo "0 results";
+                                                    echo '<option value="">No sectors available</option>';
                                                 }
 
                                                 // Close the connection
                                                 $conn->close();
-                                                ?><span class="field-box d-block w-100 position-relative">
-                                                <select class="email" name="sector">
-                                                    <!-- Default option -->
-                                                    <option class="sf-level-0 sf-item-0 sf-option-active" selected="selected" data-sf-count="0" data-sf-depth="0" value="">All Sectors</option>
-                                            
-                                                    <?php
-                                                    // Query to select all projects
-                                                    $sql = "SELECT DISTINCT sector_type FROM projects"; // Using DISTINCT to avoid duplicate sectors
-                                                    $result = $conn->query($sql);
-                                            
-                                                    // Check if there are results
-                                                    if ($result->num_rows > 0) {
-                                                        // Output data for each row
-                                                        while ($row = $result->fetch_assoc()) {
-                                                            // Echo the sector types as option elements
-                                                            echo '<option class="sf-level-0" data-sf-count="1" data-sf-depth="0" value="' . htmlspecialchars($row["sector_type"]) . '">' . htmlspecialchars($row["sector_type"]) . '</option>';
-                                                        }
-                                                    } else {
-                                                        echo '<option value="">No sectors available</option>';
-                                                    }
-                                            
-                                                    // Close the connection
-                                                    $conn->close();
-                                                    ?>
-                                                </select>
-                                            </span>
-                                            
+                                                ?>
+                                            </select>
+                                        </span>
+
+
                                     </div>
                                     <div class="col-sm-12 col-lg-3">
 
