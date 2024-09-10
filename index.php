@@ -653,7 +653,7 @@ if ($conn->connect_error) {
                                                     // Output data for each row
                                                     while ($row = $result->fetch_assoc()) {
                                                         // Echo the sector types as option elements
-                                                        echo '<option class="sf-level-0" data-sf-count="1" data-sf-depth="0" value="' . htmlspecialchars($row["id"]) . '">' . htmlspecialchars($row["sector_type"]) . '</option>';
+                                                        echo '<option class="sf-level-0" data-sf-count="1" data-sf-depth="0" value="' . htmlspecialchars($row["sector_type"]) . '">' . htmlspecialchars($row["sector_type"]) . '</option>';
                                                     }
                                                 } else {
                                                     echo '<option value="">No sectors available</option>';
